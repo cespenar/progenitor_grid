@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='progenitor_grid',
-    version='0.1.0',
+    version='0.1.1',
     description='Tool for processing a calculated grid of MESA sdB progenitors.',
     url='https://github.com/cespenar/progenitor_grid',
     author='Jakub Ostrowski',
