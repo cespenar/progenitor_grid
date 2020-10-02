@@ -19,7 +19,7 @@ Uninstall by executing
 
 A directory with LOG directories containing MESA history.data and .mod files for progenitors with names formatted as f"model_{model_number:05d}.mod":
 
-    `logs = "logs_test"`
+    logs = "logs_test"
 
 Output .txt file for the final grid:
 
