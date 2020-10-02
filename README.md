@@ -23,16 +23,16 @@ A directory with LOG directories containing MESA history.data and .mod files for
 
 Output .txt file for the final grid:
 
-    `output_file = "test_grid.txt"`
+    output_file = "test_grid.txt"
 
 Output directory for the selected .mod files:
 
-    `output_dir = "test_dir"`
+    output_dir = "test_dir"
 
 Initialize a grid:
 
-    `g = progenitor_grid.ProgenitorGrid(logs, output_file, output_dir)`
+    g = progenitor_grid.ProgenitorGrid(logs, output_file, output_dir)
 
 Evaluate the grid. This method evaluated the grid, saves the output to a file and copies the selected .mod files.
 
-    `g.evaluate_initial_grid()`
+    g.evaluate_initial_grid()
