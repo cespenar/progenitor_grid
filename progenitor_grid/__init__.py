@@ -127,12 +127,16 @@ class ProgenitorGrid():
 
                 for n in range(-self.number_of_minus_models, self.number_of_plus_models+1):
                     model_number = default_model + 10*n
-                    self.add_one_row(i, model_number, n,
-                                     initial_parameters, data)
-                    shutil.copyfile(
-                        os.path.join(log_dir, f"model_{model_number:05d}.mod"),
-                        os.path.join(self.output_dir, self.create_mod_name(os.path.basename(log_dir), n, model_number)))
-                    i += 1
+                    model_name = f"model_{model_number:05d}.mod"
+                    if os.path.isfile(os.path.join(log_dir, model_name)):
+                        self.add_one_row(i, model_number, n,
+                                        initial_parameters, data)
+                        shutil.copyfile(
+                            os.path.join(log_dir, model_name),
+                            os.path.join(self.output_dir, self.create_mod_name(os.path.basename(log_dir), n, model_number)))
+                        i += 1
+                    else:
+                        print(f"{model_name} does not exist!")
             else:
                 try:
                     shutil.rmtree(log_dir)
