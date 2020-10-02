@@ -8,8 +8,52 @@ import pandas as pd
 
 
 class ProgenitorGrid():
-    """
-    docstring
+    """Structure containing a raw MESA grid of sdB progenitors.
+
+    Reads a grid, selects and saves the progenitors models to a file, and
+    copies the .mod files into the output directory. Assumes the raw grid
+    is a directory with directories containing single MESA tracks that
+    have to include a history.data and .mod files for progenitors with
+    names formatted as f"model_{model_number:05d}.mod"
+    
+    Parameters
+    ----------
+    grid_dir : str
+        Directory containing the grid of models.
+    output_file : str
+        The name of output file.
+    output_dir : str
+        Output directory for .mod files of selected progenitors.
+    
+    Attributes
+    ----------
+    grid_dir : str
+        Directory containing the grid of models.
+    output_file : str
+        The name of output file.
+    output_dir : str
+        Output directory for .mod files of selected progenitors.
+    log_dirs : list
+        List of LOG directories.
+    number_of_tracks : int
+        Expected number of the progenitors to be selected.
+    grid : numpy.ndarray
+        The grid of selected progenitors.
+
+    Examples
+    ----------
+    >>> logs = "logs_test"
+    >>> output_file = "test_grid.txt"
+    >>> output_dir = "test_dir"
+
+    >>> g = progenitor_grid.ProgenitorGrid(logs, output_file, output_dir)
+    >>> g.evaluate_initial_grid()
+
+    Here `logs` is a directory with LOG directories containing MESA 
+    history.data and .mod files, `output_file` is an output .txt file
+    for the final grid, and `output_dir` is an output directory for
+    the selected .mod files. The grid is at first initialized and
+    then it is evaluated and saved.
     """
 
     number_of_minus_models = 5
@@ -254,3 +298,33 @@ class ProgenitorGrid():
         """
 
         return f"rgb_{log_dir[5:]}_lvl{level}_{model_number}.mod"
+
+    @classmethod
+    def set_number_of_minus_models(cls, number=5):
+        """Sets a number of models with negative offset versus the default model.
+
+        Parameters
+        ----------
+        number : int
+            Number of models with negative offset. Default: 5.
+
+        Returns
+        ----------
+        """
+
+        cls.number_of_minus_models = number
+    
+    @classmethod
+    def set_number_of_plus_models(cls, number=3):
+        """Sets a number of models with positive offset versus the default model.
+
+        Parameters
+        ----------
+        number : int
+            Number of models with positive offset. Default: 3.
+
+        Returns
+        ----------
+        """
+
+        cls.number_of_plus_models = number
